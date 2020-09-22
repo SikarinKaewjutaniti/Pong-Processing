@@ -1,5 +1,7 @@
 class PongPabble{
   float position_y;
+  void move(){
+  }
 }
 
 class PongBall{
@@ -24,5 +26,9 @@ class PongWidget{
 class PongGame{
   int playerAScore;
   int playerBScore;
+  void startGame(){
+  }
+  void pauseGame(){
+  }
   
 }
