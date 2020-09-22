@@ -8,12 +8,11 @@ void setup() {
   noStroke();
   fill(102);
   PG.startGame();
-  
 }
 void draw() {
 
   background(0);
-  rect(199,0,2,400 );
+  rect(199, 0, 2, 400 );
 
   PG.scoreA();
   PG.scoreB();
@@ -27,7 +26,6 @@ void draw() {
   PP.Pabble1();
   PP.Pabble2();
   PP.mouseMoved();
-
 }
 class PongPabble {
   float positiony;
@@ -41,21 +39,20 @@ class PongPabble {
     }
   }
   int Pabble1() {
-    if(PB.calX()< 200){
-    rect(0, positiony, 10, 100);
-    rect(390, y2, 10, 100);
-    y1 = int(positiony);
-    
+    if (PB.calX()< 200) {
+      rect(0, positiony, 10, 100);
+      rect(390, y2, 10, 100);
+      y1 = int(positiony);
+    }
+    return int(positiony);
   }
-  return int(positiony);
-}
 
   int Pabble2() {
-    if(PB.calX() > 200){
-    rect(390, positiony, 10, 100);
-    rect(0, y1, 10, 100);
-    y2 = int(positiony);
-  }
+    if (PB.calX() > 200) {
+      rect(390, positiony, 10, 100);
+      rect(0, y1, 10, 100);
+      y2 = int(positiony);
+    }
     return int(positiony);
   }
 }
@@ -138,11 +135,10 @@ class PongGame {
       playerAScore += 1;
       isRun = false;
     }
-      if (PB.calX() < -10 && isRun == true) {
-        playerBScore += 1;
-        isRun = false;
-      }
-    
+    if (PB.calX() < -10 && isRun == true) {
+      playerBScore += 1;
+      isRun = false;
+    }
   }
   void run() {
     isRun = true;
@@ -168,20 +164,18 @@ class PongGame {
     fill(102);
   }
   void pauseGame() {
-
-  
   }
 }
-  
 
-void keyPressed(){
- if (key == 'p' || key == 'P') {
-   noLoop();   
- }
+
+void keyPressed() {
+  if (key == 'p' || key == 'P') {
+    noLoop();
+  }
 }
 
 void keyReleased() {
- if (key == 'o' || key == 'O') {
-   loop();   
- }
+  if (key == 'o' || key == 'O') {
+    loop();
+  }
 }
