@@ -1,39 +1,42 @@
-class PongPabble{
-  float position_y;
-  void move(){
+class PongPabble {
+  float positiony;
+  
+  void move() {
   }
 }
 
-class PongBall{
+class PongBall {
   float velocity_x;
   float velocity_y;
   float position_x;
   float position_y;
+  int speed;
   
-  void reBound(){
+  void reBound() {
   }
-  
-  int speedCal(){
+
+  int speedCal() {
+
+    return speed;
   } 
-  
-  int position_X(){
+
+  float positionX() {
+    return position_x;
   }
-  
-  int position_Y(){
+
+  float positionY() {
+    return position_y;
   }
 }
 
-class PongWidget{
-}
 
-class PongGame{
+class PongGame {
   int playerAScore;
   int playerBScore;
- 
-  void startGame(){
+
+  void startGame() {
   }
-  
-  void pauseGame(){
+
+  void pauseGame() {
   }
-  
 }
