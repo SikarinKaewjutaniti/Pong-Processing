@@ -26,8 +26,10 @@ class PongWidget{
 class PongGame{
   int playerAScore;
   int playerBScore;
+ 
   void startGame(){
   }
+  
   void pauseGame(){
   }
   
