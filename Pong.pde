@@ -8,10 +8,12 @@ void setup() {
   noStroke();
   fill(102);
   PG.startGame();
+  
 }
 void draw() {
 
   background(0);
+  rect(199,0,2,400 );
 
   PG.scoreA();
   PG.scoreB();
