@@ -20,11 +20,11 @@ class PongBall {
     return speed;
   } 
 
-  float positionX() {
+  float calX() {
     return position_x;
   }
 
-  float positionY() {
+  float calY() {
     return position_y;
   }
 }
