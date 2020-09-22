@@ -1,22 +1,33 @@
 PongBall PB = new PongBall();
 PongPabble PP = new PongPabble();
-void setup(){
-   size(400, 400);
+void setup() {
+  size(400, 400);
   background(0);
   noStroke();
   fill(102);
 }
-void draw(){
+void draw() {
+  background(0);
   PB.draw();
-  PP.draw();
+  PP.Pabble1();
+  PP.Pabble2();
+  PP.mouseMoved();
 }
 class PongPabble {
   float positiony;
-  PongPabble(){
+  PongPabble() {
   }
-  
-  void draw(){
-  rect(0, 150,10, 100);
+  void mouseMoved() {
+    if (int(mouseY)<= 300) {
+      positiony = int(mouseY);
+    }
+  }
+  void Pabble1() {
+    rect(0, positiony, 10, 100);
+  }
+
+  void Pabble2() {
+    rect(390, positiony, 10, 100);
   }
   void move() {
   }
@@ -28,10 +39,10 @@ class PongBall {
   float position_x;
   float position_y;
   int speed;
-  PongBall(){ 
+  PongBall() {
   }
-  void draw(){
-    ellipse(200,200, 30,30);
+  void draw() {
+    ellipse(200, 200, 30, 30);
   }
   void reBound() {
   }
