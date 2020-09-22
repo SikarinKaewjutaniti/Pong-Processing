@@ -10,6 +10,9 @@ class PongBall{
   float position_x;
   float position_y;
   
+  void reBound(){
+  }
+  
   int speedCal(){
   } 
   
