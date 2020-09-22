@@ -12,6 +12,9 @@ void setup() {
 void draw() {
 
   background(0);
+
+  PG.scoreA();
+  PG.scoreB();
   if (PB.reBound() == false) {
     PB.in_Move();
   }
@@ -22,9 +25,12 @@ void draw() {
   PP.Pabble1();
   PP.Pabble2();
   PP.mouseMoved();
+
 }
 class PongPabble {
   float positiony;
+  int y2;
+  int y1;
   PongPabble() {
   }
   void mouseMoved() {
@@ -33,12 +39,21 @@ class PongPabble {
     }
   }
   int Pabble1() {
+    if(PB.calX()< 200){
     rect(0, positiony, 10, 100);
-    return int(positiony);
+    rect(390, y2, 10, 100);
+    y1 = int(positiony);
+    
   }
+  return int(positiony);
+}
 
   int Pabble2() {
+    if(PB.calX() > 200){
     rect(390, positiony, 10, 100);
+    rect(0, y1, 10, 100);
+    y2 = int(positiony);
+  }
     return int(positiony);
   }
 }
@@ -61,13 +76,12 @@ class PongBall {
   void in_Move() {
     position_x  = position_x + 2;
   }
-  void bouce(){
-        if (position_x <= -20 || position_x >= 420) {
+  void bouce() {
+    if (position_x <= -10 || position_x >= 420) {
       position_x = 200;
-    position_y = 200;
-   PG.run();
+      position_y = 200;
+      PG.run();
     }
-
   }
   void draw() {
     ellipse(position_x, position_y, 30, 30);
@@ -95,7 +109,7 @@ class PongBall {
       moveX = 1-((400 - position_x)/400);
       moveY= -1*(400 - position_x)/400;
     }
-     
+
 
     position_x += moveX;
     position_y += moveY;
@@ -116,30 +130,56 @@ class PongGame {
   int playerAScore;
   int playerBScore;
   boolean isRun= false;
- void gameRunning(){
-    if(PB.calX() > 410 && isRun == true){
-    playerAScore += 1;
-    isRun = false;
-    print(playerAScore);   
-}
-    
-    if(PB.calX() < -10 && isRun == true){
-    playerBScore += 1;
-    isRun = false;
-    print(playerBScore);  
-}
+
+  void gameRunning() {
+    if (PB.calX() > 410 && isRun == true) {
+      playerAScore += 1;
+      isRun = false;
+    }
+      if (PB.calX() < -10 && isRun == true) {
+        playerBScore += 1;
+        isRun = false;
+      }
     
   }
- void run(){
-  isRun = true;
- } 
- void startGame() {
+  void run() {
+    isRun = true;
+  } 
+  void startGame() {
     PB.calBall();
     playerAScore = 0;
     playerBScore = 0;
     isRun = true;
   }
+  void scoreA() {
+    textSize(32);
+    fill(0, 102, 153);
+    text(playerAScore, 100, 30); 
 
-  void pauseGame() {
+    fill(102);
   }
+  void scoreB() {
+    textSize(32);
+    fill(0, 102, 153);
+    text(playerBScore, 300, 30); 
+
+    fill(102);
+  }
+  void pauseGame() {
+
+  
+  }
+}
+  
+
+void keyPressed(){
+ if (key == 'p' || key == 'P') {
+   noLoop();   
+ }
+}
+
+void keyReleased() {
+ if (key == 'o' || key == 'O') {
+   loop();   
+ }
 }
