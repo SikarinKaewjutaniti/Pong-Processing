@@ -1,4 +1,5 @@
 class PongPabble{
+  float position_y;
 }
 
 class PongBall{
