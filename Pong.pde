@@ -12,12 +12,12 @@ void setup() {
 void draw() {
 
   background(0);
-  if (PB.reBound() == false){
+  if (PB.reBound() == false) {
     PB.in_Move();
-  }else{
-  print("GG");
-}
+  }
+  PG.gameRunning();
   PB.draw();
+  PB.bouce();
   PB.reBound();
   PP.Pabble1();
   PP.Pabble2();
@@ -61,6 +61,14 @@ class PongBall {
   void in_Move() {
     position_x  = position_x + 2;
   }
+  void bouce(){
+        if (position_x <= -20 || position_x >= 420) {
+      position_x = 200;
+    position_y = 200;
+   PG.run();
+    }
+
+  }
   void draw() {
     ellipse(position_x, position_y, 30, 30);
   }
@@ -70,37 +78,29 @@ class PongBall {
         moveY = 2*((position_y - (PP.Pabble1()+50))/100);
         moveX =  2*(1-((position_y - (PP.Pabble1()+50))/100));
         reB = true;
-      }else
+      } else
       {
         if (position_x >= 390 &&position_x <= 400) {
-         moveY = 2*((position_y - (PP.Pabble1()+50))/100);
-         moveX = -1*2*(1-((position_y - (PP.Pabble1()+50))/100));
+          moveY = 2*((position_y - (PP.Pabble1()+50))/100);
+          moveX = -1*2*(1-((position_y - (PP.Pabble1()+50))/100));
           reB = true;
         }
       }
+    }
+    if (position_y <= 0) {
+      moveX = 1-((400 - position_x)/400);
+      moveY = (400 - position_x)/400;
+    }
+    if (position_y > 400) {
+      moveX = 1-((400 - position_x)/400);
+      moveY= -1*(400 - position_x)/400;
+    }
      
-    }
-    if(position_y <= 0){
-    moveX = 1-((400 - position_x)/400);
-    moveY = (400 - position_x)/400;
-    }
-    if(position_y > 400){
-    moveX = 1-((400 - position_x)/400);
-    moveY= -1*(400 - position_x)/400;
-    }
-    
+
     position_x += moveX;
-position_y += moveY;
-return(reB);  
-
-
-}
-  
-
-  int speedCal() {
-
-    return speed;
-  } 
+    position_y += moveY;
+    return(reB);
+  }
 
   float calX() {
     return position_x;
@@ -115,9 +115,29 @@ return(reB);
 class PongGame {
   int playerAScore;
   int playerBScore;
-
-  void startGame() {
+  boolean isRun= false;
+ void gameRunning(){
+    if(PB.calX() > 410 && isRun == true){
+    playerAScore += 1;
+    isRun = false;
+    print(playerAScore);   
+}
+    
+    if(PB.calX() < -10 && isRun == true){
+    playerBScore += 1;
+    isRun = false;
+    print(playerBScore);  
+}
+    
+  }
+ void run(){
+  isRun = true;
+ } 
+ void startGame() {
     PB.calBall();
+    playerAScore = 0;
+    playerBScore = 0;
+    isRun = true;
   }
 
   void pauseGame() {
