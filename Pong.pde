@@ -39,7 +39,7 @@ class PongPabble {
     }
   }
   int Pabble1() {
-    if (PB.calX()< 200) {
+    if (PB.getX()< 200) {
       rect(0, positiony, 10, 100);
       rect(390, y2, 10, 100);
       y1 = int(positiony);
@@ -48,7 +48,7 @@ class PongPabble {
   }
 
   int Pabble2() {
-    if (PB.calX() > 200) {
+    if (PB.getX() > 200) {
       rect(390, positiony, 10, 100);
       rect(0, y1, 10, 100);
       y2 = int(positiony);
@@ -58,11 +58,9 @@ class PongPabble {
 }
 
 class PongBall {
-  float velocity_x;
-  float velocity_y;
+
   float position_x;
   float position_y;
-  int speed;
   boolean reB;
   float moveX;
   float moveY;
@@ -115,11 +113,11 @@ class PongBall {
     return(reB);
   }
 
-  float calX() {
+  float getX() {
     return position_x;
   }
 
-  float calY() {
+  float getY() {
     return position_y;
   }
 }
@@ -131,11 +129,11 @@ class PongGame {
   boolean isRun= false;
 
   void gameRunning() {
-    if (PB.calX() > 410 && isRun == true) {
+    if (PB.getX() > 410 && isRun == true) {
       playerAScore += 1;
       isRun = false;
     }
-    if (PB.calX() < -10 && isRun == true) {
+    if (PB.getX() < -10 && isRun == true) {
       playerBScore += 1;
       isRun = false;
     }
