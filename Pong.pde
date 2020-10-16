@@ -15,7 +15,7 @@ void draw() {
   rect(199, 0, 2, 400 );
 
   PG.scoreA();
-  PG.scoreB();
+
   if (PB.reBound() == false) {
     PB.in_Move();
   }
@@ -23,7 +23,7 @@ void draw() {
   PB.draw();
   PB.bouce();
   PB.reBound();
-  PP.Pabble1();
+
   PP.Pabble2();
   PP.mouseMoved();
 }
@@ -38,21 +38,14 @@ class PongPabble {
       positiony = int(mouseY);
     }
   }
-  int Pabble1() {
-    if (PB.getX()< 200) {
-      rect(0, positiony, 10, 100);
-      rect(390, y2, 10, 100);
-      y1 = int(positiony);
-    }
-    return int(positiony);
-  }
+
 
   int Pabble2() {
-    if (PB.getX() > 200) {
+    
       rect(390, positiony, 10, 100);
-      rect(0, y1, 10, 100);
+      
       y2 = int(positiony);
-    }
+    
     return int(positiony);
   }
 }
@@ -84,27 +77,26 @@ class PongBall {
     ellipse(position_x, position_y, 30, 30);
   }
   boolean reBound() {
-    if (position_y >= PP.Pabble1() && position_y <= PP.Pabble1()+100 ) {
-      if (position_x <= 10 &&position_x >= 0) {
-        moveY = 2*((position_y - (PP.Pabble1()+50))/100);
-        moveX =  2*(1-((position_y - (PP.Pabble1()+50))/100));
-        reB = true;
-      } else
-      {
+    if (position_y >= PP.Pabble2() && position_y <= PP.Pabble2()+100 ) {
+      
         if (position_x >= 390 &&position_x <= 400) {
-          moveY = 2*((position_y - (PP.Pabble1()+50))/100);
-          moveX = -1*2*(1-((position_y - (PP.Pabble1()+50))/100));
+          moveY = 2*((position_y - (PP.Pabble2()+50))/100);
+          moveX = -1*2*(1-((position_y - (PP.Pabble2()+50))/100));
           reB = true;
         }
       }
-    }
-    if (position_y <= 0) {
-      moveX = 1-((400 - position_x)/400);
-      moveY = (400 - position_x)/400;
-    }
+     if (position_x <= 0) {
+        moveY = 2*((position_y - 200)/400);
+        moveX =  2*(1-((position_y - 200)/400));
+        reB = true;
+      } 
     if (position_y > 400) {
       moveX = 1-((400 - position_x)/400);
       moveY= -1*(400 - position_x)/400;
+    }
+     if (position_y < 0) {
+      moveX = 1-((400 - position_x)/400);
+      moveY= (400 - position_x)/400;
     }
 
 
@@ -154,13 +146,7 @@ class PongGame {
 
     fill(102);
   }
-  void scoreB() {
-    textSize(32);
-    fill(0, 102, 153);
-    text(playerBScore, 300, 30); 
 
-    fill(102);
-  }
   void pauseGame() {
   }
 }
